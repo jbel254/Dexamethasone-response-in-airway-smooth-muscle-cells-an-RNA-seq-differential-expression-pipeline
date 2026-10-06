@@ -3,6 +3,7 @@
 
 A reproducible R pipeline taking the Bioconductor `airway` dataset from raw counts to biological interpretation: paired DESeq2 modelling, QC, shrunken fold changes, annotated results, pathway enrichment (GO, KEGG, GSEA) and cross-validation against edgeR and limma-voom.
 https://jbel254.github.io/Dexamethasone-response-in-airway-smooth-muscle-cells-an-RNA-seq-differential-expression-pipeline/
+
 **Dataset:** Himes *et al.* (2014), four human airway smooth muscle cell lines, each cultured with and without the synthetic glucocorticoid **dexamethasone** (8 samples, 4 pairs).
 **Question:** which genes respond to dexamethasone, and which biological processes do they represent?
 
