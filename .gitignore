@@ -1,0 +1,7 @@
+.Rhistory
+.RData
+.Rproj.user/
+*.rds
+report.html
+report_files/
+.quarto/

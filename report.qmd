@@ -1,0 +1,78 @@
+---
+title: "Dexamethasone response in airway smooth muscle cells: an RNA-seq analysis"
+format:
+  html:
+    toc: true
+    embed-resources: true
+    code-fold: true
+execute:
+  warning: false
+  message: false
+---
+
+```{r setup}
+library(tidyverse)
+library(knitr)
+res <- read.csv("results/deseq2_results_all.csv")
+design_cmp <- read.csv("results/design_comparison.csv")
+n_up   <- sum(res$direction == "Up")
+n_down <- sum(res$direction == "Down")
+```
+
+## Background
+
+This report analyses the `airway` dataset (Himes *et al.* 2014): four human
+airway smooth muscle cell lines, each cultured with and without the
+glucocorticoid dexamethasone. The question: **which genes respond to
+dexamethasone, and what biology do they represent?**
+
+Because every cell line contributes one treated and one untreated sample, the
+model blocks on cell line (`~ cellLine + dexamethasone`).
+
+## Quality control
+
+![PCA of VST counts. Samples separate by cell line on PC1; after removing the cell-line effect (right) treatment separates clearly.](figures/qc_pca.png){width=48%}
+![](figures/qc_pca_cellline_removed.png){width=48%}
+
+![Sample distances](figures/qc_sample_distances.png){width=60%}
+
+## Differential expression
+
+Using padj < 0.05 and |shrunken log2FC| >= 1, we find **`r n_up`** up- and
+**`r n_down`** down-regulated genes.
+
+Modelling the pairing increases power:
+
+```{r}
+kable(design_cmp, col.names = c("Design", "Genes with padj < 0.05"))
+```
+
+![Volcano plot](figures/volcano.png){width=70%}
+
+![Top 40 DE genes](figures/heatmap_top40.png){width=70%}
+
+### Sanity check: known glucocorticoid-responsive genes
+
+![](figures/known_gc_genes.png){width=80%}
+
+### Top up-regulated genes
+
+```{r}
+kable(head(read.csv("results/top20_up.csv"), 10), digits = 3)
+```
+
+## Functional enrichment
+
+![GSEA, Hallmark pathways](figures/gsea_hallmark_nes.png){width=70%}
+
+![GO Biological Process, up-regulated genes](figures/go_bp_up.png){width=70%}
+
+## Robustness across methods
+
+![](figures/method_overlap.png){width=70%}
+
+## Session info
+
+```{r}
+cat(readLines("results/sessionInfo.txt"), sep = "\n")
+```
