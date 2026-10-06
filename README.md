@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Dexamethasone response in airway smooth muscle cells: an RNA-seq differential expression pipeline
 
 A reproducible R pipeline taking the Bioconductor `airway` dataset from raw counts to biological interpretation: paired DESeq2 modelling, QC, shrunken fold changes, annotated results, pathway enrichment (GO, KEGG, GSEA) and cross-validation against edgeR and limma-voom.
@@ -149,3 +150,7 @@ Himes BE *et al.* (2014). RNA-Seq transcriptome profiling identifies CRISPLD2 as
 ## License
 
 MIT. See `LICENSE`.
+=======
+# Dexamethasone-response-in-airway-smooth-muscle-cells-an-RNA-seq-differential-expression-pipeline
+A reproducible R pipeline taking the Bioconductor airway dataset from raw counts to biological interpretation: paired DESeq2 modelling, QC, shrunken fold changes, annotated results, pathway enrichment (GO, KEGG, GSEA) and cross-validation against edgeR and limma-voom.
+>>>>>>> e62f299d5cbc14469f1dd58154cd5ab23df90fbc
